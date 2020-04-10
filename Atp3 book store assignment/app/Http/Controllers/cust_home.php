@@ -128,5 +128,29 @@ class cust_home extends Controller
 
         return redirect('/cust_home');
     }
+    public function Searchpage(Request $req){
+        return view('cust_home.Searchpage');
+    }
+    public function Search_con(Request $req){
+
+        $sc = $req->sc;
+        // $b_list = book::where('bookName', 'like', '%'.$sc.'%')->get();
+
+        if($req->type=='Author name')
+        {
+            $b_list = book::where('authorName', 'like', '%'.$sc.'%')->get();
+        }
+        else if($req->type=='Category')
+        {
+            $b_list = book::where('category', 'like', '%'.$sc.'%')->get();
+        }
+        else
+        {
+            $b_list = book::where('bookName', 'like', '%'.$sc.'%')->get();
+        }
+
+
+        return view('cust_home.Search_con',['b_list'=>$b_list]);
+    }
 
 }
