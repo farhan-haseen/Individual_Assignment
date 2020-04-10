@@ -152,5 +152,11 @@ class cust_home extends Controller
 
         return view('cust_home.Search_con',['b_list'=>$b_list]);
     }
+    public function plist(Request $req){
 
+        $user = $req->session()->get('username');
+        $bookorder = bookorder::where('username',$user)->get();
+        return view('cust_home.plist',['list'=>$bookorder]);
+
+    }
 }

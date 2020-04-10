@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\user;
 use App\book;
+use App\bookorder;
 
 class admin_home extends Controller
 {
@@ -71,4 +72,13 @@ class admin_home extends Controller
 
         return view('admin_home.index');
     }
+    public function plist(Request $req){
+
+        $bookorder = bookorder::all();
+        // $user = $req->session()->get('username');
+        // $bookorder = bookorder::where('username',$user)->get();
+        return view('admin_home.plist',['list'=>$bookorder]);
+
+    }
+
 }
