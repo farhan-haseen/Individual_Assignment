@@ -25,6 +25,7 @@ class cust_home extends Controller
         $b_list = book::where('id',$req->cartBtn)->get();
         
         $cart = new cart();
+        $cart->bookId = $b_list[0]->id;
         $cart->bookName = $b_list[0]->bookName;
         $cart->price = $b_list[0]->price;
         $cart->save();
@@ -35,6 +36,8 @@ class cust_home extends Controller
     public function orderNow(Request $req){
         
         $req->session()->put('bookId',$req->orderBtn);
+        $req->session()->put('b_name',$req->bn);
+        $req->session()->put('b_price',$req->bp);
         return view('cust_home.payment');
 
     }
@@ -42,14 +45,60 @@ class cust_home extends Controller
         
         $user = $req->session()->get('username');
         $b_id = $req->session()->get('bookId');
+        $b_name = $req->session()->get('b_name');
+        $b_price = $req->session()->get('b_price');
 
         $bookorder = new bookorder();
         $bookorder->username = $user;
         $bookorder->bookId = $b_id;
+        $bookorder->bookName = $b_name;
+        $bookorder->price = $b_price;
         $bookorder->paytype = $req->type;
         $bookorder->save();
 
         return redirect('/cust_home');
     }
-    
+    public function cart_payment(Request $req){
+        return view('cust_home.cart_payment');
+    }
+    public function cart_pm_selected(Request $req){
+
+        $req->session()->put('pmtype',$req->type);
+        $c_list = cart::all();
+        return view('cust_home.cartItems',['c_list'=>$c_list]);
+
+    }
+    public function cart_delete(Request $req){
+        
+        // echo $req->viewBtn;
+        cart::destroy($req->viewBtn);
+        
+        $c_list = cart::all();
+        return view('cust_home.cartItems',['c_list'=>$c_list]);
+    }
+    public function cart_order_all(Request $req){
+
+        $user = $req->session()->get('username');
+        $pmtype = $req->session()->get('pmtype');
+
+        $cart = cart::all();
+        
+        foreach($cart as &$c)
+        {
+            // echo $c['bookId'];
+            // echo $c['bookName'];
+            // echo $c['price'];
+
+            $bookorder = new bookorder();
+            $bookorder->username = $user;
+            $bookorder->bookId = $c['bookId'];
+            $bookorder->bookName = $c['bookName'];
+            $bookorder->price = $c['price'];
+            $bookorder->paytype = $pmtype;
+            $bookorder->save();
+
+        }
+
+    }
+
 }

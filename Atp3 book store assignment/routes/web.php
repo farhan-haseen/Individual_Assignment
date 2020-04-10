@@ -29,8 +29,17 @@ Route::post('/newbook_2', 'admin_home@newbook_2');
 
 
 Route::get('/cust_home', 'cust_home@index');
+
 Route::post('/view', 'cust_home@view');
 Route::post('/orderNow', 'cust_home@orderNow');
 Route::post('/addtocart', 'cust_home@addtocart');
 Route::post('/pm_selected', 'cust_home@payment');
+
+Route::get('/cart_payment', 'cust_home@cart_payment');
+Route::post('/cart_pm_selected', 'cust_home@cart_pm_selected');
+Route::post('/cart_delete', 'cust_home@cart_delete');
+Route::get('/cart_order_all', 'cust_home@cart_order_all');
+
+
+
 

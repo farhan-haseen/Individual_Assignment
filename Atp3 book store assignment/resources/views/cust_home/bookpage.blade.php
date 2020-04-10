@@ -27,6 +27,8 @@
 			<button type="submit" name="orderBtn" value="{{ $book['id'] }}">
 				Order this
 			</button>
+			<input type="hidden" name="bn" value="{{ $book['bookName'] }}">
+			<input type="hidden" name="bp" value="{{ $book['price'] }}">
 		</form>
 		<form action="/addtocart" method="post">
 			{{csrf_field()}}
