@@ -19,15 +19,38 @@ class admin_home extends Controller
         return view('admin_home.profile',['userInfo'=>$list[0]]);
 
     }
+    public function admin_profileUpdate(Request $req){
+
+        $user = user::where('id',$req->submit)->get();
+        $user = $user[0];
+
+        $user->password = $req->password;
+        $user->fullname     = $req->name;
+        $user->phone     = $req->Phone;
+        $user->address     = $req->Address;
+        
+        $user->save();
+        return redirect('/admin_profile');
+
+    }
     public function custlist(Request $req){
 
         $list = user::where('type','customer')->get();
-        echo $list[0];
+
+        return view('admin_home.custlist',['u_list'=>$list]);
     }
+    public function admin_cl_delete($id,Request $req){
+
+        user::destroy($id);
+        return redirect('/admin_cl');
+        
+    }
+
     public function userlist(Request $req){
 
         $list = user::all();
-        echo $list;
+        
+        return view('admin_home.alluserlist',['u_list'=>$list]);
     }
     public function newbook(Request $req){
 

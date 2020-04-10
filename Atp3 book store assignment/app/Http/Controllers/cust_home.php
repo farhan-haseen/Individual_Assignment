@@ -7,6 +7,7 @@ use App\user;
 use App\book;
 use App\bookorder;
 use App\cart;
+use Illuminate\Support\Facades\DB;
 
 class cust_home extends Controller
 {
@@ -14,6 +15,29 @@ class cust_home extends Controller
         $b_list = book::all();
         return view('cust_home.index',['b_list'=>$b_list]);
     }
+    public function profile(Request $req){
+
+        $user = $req->session()->get('username');
+        $list = user::where('username',$user)->get();
+        return view('cust_home.profile',['userInfo'=>$list[0]]);
+
+    }
+    public function cust_profileUpdate(Request $req){
+
+        $user = user::where('id',$req->submit)->get();
+        $user = $user[0];
+
+        $user->password = $req->password;
+        $user->fullname     = $req->name;
+        $user->phone     = $req->Phone;
+        $user->address     = $req->Address;
+        
+        $user->save();
+        return redirect('/cust_profile');
+
+    }
+
+
     public function view(Request $req){
 
         $b_list = book::where('id',$req->viewBtn)->get();
@@ -85,7 +109,6 @@ class cust_home extends Controller
         
         foreach($cart as &$c)
         {
-
             $bookorder = new bookorder();
             $bookorder->username = $user;
             $bookorder->bookId = $c['bookId'];
@@ -93,9 +116,17 @@ class cust_home extends Controller
             $bookorder->price = $c['price'];
             $bookorder->paytype = $pmtype;
             $bookorder->save();
-
         }
 
+        DB::table('carts')->delete();
+        // cart::destroy();
+
+        $req->session()->flush();
+        $req->session()->put('username',$user);
+        // echo $req->session()->get('username');
+        // echo $req->session()->get('pmtype');
+
+        return redirect('/cust_home');
     }
 
 }
