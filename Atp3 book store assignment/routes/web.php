@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//
 Route::get('/', 'login@index');
 Route::get('/login', 'login@index');
 Route::post('/checkuser', 'login@verify');
@@ -39,6 +40,7 @@ Route::get('/cart_payment', 'cust_home@cart_payment');
 Route::post('/cart_pm_selected', 'cust_home@cart_pm_selected');
 Route::post('/cart_delete', 'cust_home@cart_delete');
 Route::get('/cart_order_all', 'cust_home@cart_order_all');
+
 
 
 

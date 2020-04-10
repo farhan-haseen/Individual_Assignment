@@ -85,9 +85,6 @@ class cust_home extends Controller
         
         foreach($cart as &$c)
         {
-            // echo $c['bookId'];
-            // echo $c['bookName'];
-            // echo $c['price'];
 
             $bookorder = new bookorder();
             $bookorder->username = $user;
