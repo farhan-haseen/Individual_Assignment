@@ -43,6 +43,7 @@ class admin_home extends Controller
 
         user::destroy($id);
         return redirect('/admin_cl');
+
         
     }
 
