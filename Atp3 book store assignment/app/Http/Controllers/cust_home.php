@@ -68,8 +68,20 @@ class cust_home extends Controller
         $cart->bookName = $b_list[0]->bookName;
         $cart->price = $b_list[0]->price;
         $cart->save();
-        
-        return redirect('/cust_home');
+
+        if($req->bookpage != null)
+        {
+            $b_list = book::where('id',$req->bookpage)->get();
+            return view('cust_home.bookpage',['b_list'=>$b_list]);
+        }
+        else if($req->searchpage != null)
+        {
+            return view('cust_home.Searchpage');
+        }
+        else
+        {
+            return redirect('/cust_home');
+        }
 
     }
     public function orderNow(Request $req){

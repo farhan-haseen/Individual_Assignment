@@ -66,6 +66,7 @@
 				<button type="submit" name="cartBtn" value="{{ $book['id'] }}">
 					Add to Cart
 				</button>
+				<input type="hidden" name="bookpage" value="{{ $book['id'] }}">
 			</form>
 		</div>
 		
