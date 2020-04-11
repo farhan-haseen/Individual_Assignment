@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 //
 Route::get('/', 'login@index');
 Route::get('/login', 'login@index');
+Route::get('/logout', 'logout@index');
 Route::post('/checkuser', 'login@verify');
 
 Route::get('/reg', 'reg@index');
@@ -38,6 +39,7 @@ Route::get('/cust_plist', 'cust_home@plist');
 Route::post('/cust_profileUpdate', 'cust_home@cust_profileUpdate');
 Route::get('/Searchpage', 'cust_home@Searchpage');
 Route::post('/Search_con', 'cust_home@Search_con');
+Route::get('/category/{cat}', 'cust_home@cat');
 
 Route::post('/view', 'cust_home@view');
 Route::post('/orderNow', 'cust_home@orderNow');

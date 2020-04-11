@@ -12,8 +12,23 @@ use Illuminate\Support\Facades\DB;
 class cust_home extends Controller
 {
     public function index(Request $req){
+        
         $b_list = book::all();
-        return view('cust_home.index',['b_list'=>$b_list]);
+        $cat_list = DB::table('books')->select('category')
+        ->groupBy('category')
+        ->get();
+        
+        return view('cust_home.index',['b_list'=>$b_list,'cat_list'=>$cat_list]);
+    }
+    public function cat($cat,Request $req){
+
+        $b_list = book::where('category',$cat)->get();
+        $cat_list = DB::table('books')->select('category')
+        ->groupBy('category')
+        ->get();
+        
+        return view('cust_home.index',['b_list'=>$b_list,'cat_list'=>$cat_list]);
+
     }
     public function profile(Request $req){
 

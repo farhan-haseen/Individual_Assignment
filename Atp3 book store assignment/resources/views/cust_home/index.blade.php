@@ -19,6 +19,13 @@
 	<a href="/cart_payment">Payment</a> |
 	<a href="/Searchpage">Search</a> 
 
+	<hr>
+	@foreach($cat_list as $categ)
+	
+	<a href="/category/{{ $categ->category }}">{{ $categ->category }}</a> |
+	
+	@endforeach
+	<hr>
 
 	<br>
 	<br>
