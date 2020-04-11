@@ -20,12 +20,12 @@
 		Name: {{ $book['bookName'] }} <br>
 		Price: {{ $book['price'] }} <br>
 		Category: {{ $book['category'] }} <br>
-		authorName: {{ $book['authorName'] }} <br>
-		authorInfo: {{ $book['authorInfo'] }} <br>
+		Author Name: {{ $book['authorName'] }} <br>
+		Author Background: {{ $book['authorInfo'] }} <br>
 		<form action="/orderNow" method="post">
 			{{csrf_field()}}
 			<button type="submit" name="orderBtn" value="{{ $book['id'] }}">
-				Order this
+				Order this Book
 			</button>
 			<input type="hidden" name="bn" value="{{ $book['bookName'] }}">
 			<input type="hidden" name="bp" value="{{ $book['price'] }}">

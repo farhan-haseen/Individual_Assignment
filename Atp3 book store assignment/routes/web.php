@@ -52,6 +52,3 @@ Route::post('/cart_delete', 'cust_home@cart_delete');
 Route::get('/cart_order_all', 'cust_home@cart_order_all');
 
 
-
-
-
