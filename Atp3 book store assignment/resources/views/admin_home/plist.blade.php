@@ -17,7 +17,8 @@
 				<th>Book ID</th>
 				<th>Book Name</th>
 				<th>Price</th>
-				<th>Pay Type</th>
+				<th>Payment Type</th>
+				<th>Date</th>
 				
 			</tr>
 	
@@ -30,6 +31,7 @@
 				<td>{{$userInfo['bookName']}}</td>
 				<td>{{$userInfo['price']}}</td>
 				<td>{{$userInfo['paytype']}}</td>
+				<td>{{$userInfo['purDate']}}</td>
 			</tr>
 
 		@endforeach

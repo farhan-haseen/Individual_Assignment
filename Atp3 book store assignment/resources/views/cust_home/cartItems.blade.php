@@ -5,9 +5,15 @@
 	<style>
 		.c1
 		{
-			background-color: black;
-			color: white;
-			margin-top: 10px;
+			border: 2px solid black;
+			width: 44%;
+			padding: 10px;
+			margin: 10px 0px 0 0px;
+			display: inline-block;
+		}
+		.c1 form
+		{
+			display: inline-block;
 		}
 	</style>
 </head>
