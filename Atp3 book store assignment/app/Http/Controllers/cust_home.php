@@ -86,6 +86,7 @@ class cust_home extends Controller
         $b_id = $req->session()->get('bookId');
         $b_name = $req->session()->get('b_name');
         $b_price = $req->session()->get('b_price');
+        $date = date("Y-m-d");
 
         $bookorder = new bookorder();
         $bookorder->username = $user;
@@ -93,6 +94,7 @@ class cust_home extends Controller
         $bookorder->bookName = $b_name;
         $bookorder->price = $b_price;
         $bookorder->paytype = $req->type;
+        $bookorder->purDate = $date;
         $bookorder->save();
 
         return redirect('/cust_home');
@@ -119,6 +121,7 @@ class cust_home extends Controller
 
         $user = $req->session()->get('username');
         $pmtype = $req->session()->get('pmtype');
+        $date = date("Y-m-d");
 
         $cart = cart::all();
         
@@ -130,6 +133,7 @@ class cust_home extends Controller
             $bookorder->bookName = $c['bookName'];
             $bookorder->price = $c['price'];
             $bookorder->paytype = $pmtype;
+            $bookorder->purDate = $date;
             $bookorder->save();
         }
 
