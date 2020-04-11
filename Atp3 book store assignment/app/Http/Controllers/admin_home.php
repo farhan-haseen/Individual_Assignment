@@ -22,13 +22,20 @@ class admin_home extends Controller
     }
     public function admin_profileUpdate(Request $req){
 
+        $req->validate([
+            'password'=>'bail|required|min:3',
+            'name'=>'required',
+            'Phone'=>'bail|required|min:11|max:11',
+            'Address'=>'required'
+        ]);
+        
         $user = user::where('id',$req->submit)->get();
         $user = $user[0];
 
-        $user->password = $req->password;
+        $user->password     = $req->password;
         $user->fullname     = $req->name;
-        $user->phone     = $req->Phone;
-        $user->address     = $req->Address;
+        $user->phone        = $req->Phone;
+        $user->address      = $req->Address;
         
         $user->save();
         return redirect('/admin_profile');
@@ -44,10 +51,8 @@ class admin_home extends Controller
 
         user::destroy($id);
         return redirect('/admin_cl');
-
-        
+   
     }
-
     public function userlist(Request $req){
 
         $list = user::all();
@@ -59,6 +64,15 @@ class admin_home extends Controller
         return view('admin_home.newbook');
     }
     public function newbook_2(Request $req){
+
+        $req->validate([
+            'Bookname'=>'required',
+            'Price'=>'required',
+            'Category'=>'required',
+            'Bookinfo'=>'required',
+            'Authorname'=>'required',
+            'Authorinfo'=>'required'
+        ]);
 
         $book = new book();
 
@@ -76,8 +90,6 @@ class admin_home extends Controller
     public function plist(Request $req){
 
         $bookorder = bookorder::all();
-        // $user = $req->session()->get('username');
-        // $bookorder = bookorder::where('username',$user)->get();
         return view('admin_home.plist',['list'=>$bookorder]);
 
     }

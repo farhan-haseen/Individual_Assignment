@@ -39,20 +39,25 @@ class cust_home extends Controller
     }
     public function cust_profileUpdate(Request $req){
 
+        $req->validate([
+            'password'=>'bail|required|min:3',
+            'name'=>'required',
+            'Phone'=>'bail|required|min:11|max:11',
+            'Address'=>'required'
+        ]);
+
         $user = user::where('id',$req->submit)->get();
         $user = $user[0];
 
-        $user->password = $req->password;
+        $user->password     = $req->password;
         $user->fullname     = $req->name;
-        $user->phone     = $req->Phone;
-        $user->address     = $req->Address;
+        $user->phone        = $req->Phone;
+        $user->address      = $req->Address;
         
         $user->save();
         return redirect('/cust_profile');
 
     }
-
-
     public function view(Request $req){
 
         $b_list = book::where('id',$req->viewBtn)->get();
