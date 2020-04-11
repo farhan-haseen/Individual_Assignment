@@ -56,7 +56,7 @@
 	<div class="menus">
 		<div class="menu1">
 			<a href="/cust_profile">Check Profile</a> |
-			<a href="/cart_payment">Payment</a>
+			<a href="/cart_payment">Buy Cart Items</a>
 		</div>
 		<div class="menu2">
 			<a href="/Searchpage">Search</a> |

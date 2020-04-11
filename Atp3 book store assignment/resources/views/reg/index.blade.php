@@ -38,15 +38,16 @@
 						<option>admin</option>
 					</select>
 				</td>
-				<!-- <td><input type="text"  name="type" value="{{old('type')}}"></td> -->
 			</tr>
+
+			<tr></tr>
+			<tr></tr>
 			
 			<tr>
 				<td></td>
-				<td><input type="submit"  name="submit" value="Confirm"></td>
 				<td>
+					<input type="submit"  name="submit" value="Confirm">
 					<a href="/login">Back</a>
-
 				</td>
 			</tr>
 		</table>

@@ -14,14 +14,12 @@ class reg extends Controller
     
         $req->validate([
             'username'=>'bail|required|min:3|unique:users',
-            'password'=>'required',
+            'password'=>'bail|required|min:3',
             'name'=>'required',
-            'Phone'=>'required',
+            'Phone'=>'bail|required|min:11|max:11',
             'Address'=>'required',
             'type'=>'required'
         ]);
-
-        // echo "sAAAAAfsd";
 
         $user = new user();
 
@@ -32,13 +30,15 @@ class reg extends Controller
         $user->address     = $req->Address;
         $user->type     = $req->type;
         
-        $user->save();
-        return view('login.index');
-        
-        // if($user->save()){
-        //     return redirect()->route('home.list');
-        // }else{
-        //     return redirect()->route('home.add');
-        // }
+        if($user->save())
+        {
+            $req->session()->flash('msg', 'Your account has been made!');
+            return redirect('/login');
+        }
+        else
+        {
+            $req->session()->flash('msg', 'An Error happened! Try again please!');
+            return redirect('/login');
+        }
     }
 }

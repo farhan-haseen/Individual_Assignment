@@ -7,8 +7,6 @@
 	<h1>Welcome to our book store</h1>
 	<h3>Login Page</h3>
 	<form action="/checkuser" method="post">
-		<!-- @csrf -->
-		<!--{{ csrf_field()}} -->	
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		Username: <input type="text" name="uname" > <br><br>
 		Password: <input type="password" name="password" ><br><br>
@@ -18,5 +16,8 @@
 	For registering a new account, go to <a href="/reg">here</a>
 	<br>
 	<h3>{{session('msg')}}</h3>
+	@foreach($errors->all() as $error)
+		<h5>{{$error}} </h5>
+	@endforeach
 </body>
 </html>

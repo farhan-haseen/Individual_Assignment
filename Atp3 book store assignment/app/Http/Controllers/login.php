@@ -11,11 +11,15 @@ class login extends Controller
         return view('login.index');
     }
     public function verify(Request $req){
+
+        $req->validate([
+            'uname'=>'bail|required|min:3',
+            'password'=>'bail|required|min:3',
+        ]);
     		
         $user = user::where('username', $req->uname)
-                    ->where('password', $req->password)
-                    ->first();
-        // echo $user;
+        ->where('password', $req->password)
+        ->first();
 
         if($user != null){
             

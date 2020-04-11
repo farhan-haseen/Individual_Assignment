@@ -65,6 +65,7 @@ class admin_home extends Controller
         $book->bookName         = $req->Bookname;
         $book->price            = $req->Price;
         $book->category         = $req->Category;
+        $book->description      = $req->Bookinfo;
         $book->authorName       = $req->Authorname;
         $book->authorInfo       = $req->Authorinfo;
         

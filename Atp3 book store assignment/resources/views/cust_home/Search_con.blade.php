@@ -5,9 +5,15 @@
 	<style>
 		.c1
 		{
-			background-color: black;
-			color: white;
-			margin-top: 10px;
+			border: 2px solid black;
+			width: 35%;
+			padding: 7px;
+			margin: 10px 0px 0 70px;
+			display: inline-block;
+		}
+		.c1 form
+		{
+			display: inline-block;
 		}
 	</style>
 
@@ -29,9 +35,9 @@
 		<br>
 		<input type="submit" value="Go!" class="s1">
 	</form>
-	
-	<br>
-	<br>
+
+	<hr>
+	<hr>
 	
 	@foreach($b_list as $book)
 	<div class="c1">
@@ -48,7 +54,7 @@
 		<form action="/addtocart" method="post">
 			{{csrf_field()}}
 			<button type="submit" name="cartBtn" value="{{ $book['id'] }}">
-				Cart
+				Add to Cart
 			</button>
 		</form>
 	</div>

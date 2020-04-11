@@ -24,6 +24,10 @@
 				<td><input type="text"  name="Category" value=""></td>
 			</tr>
 			<tr>
+				<td>Book Description:</td>
+				<td><textarea  name="Bookinfo" value=""></textarea></td>
+			</tr>
+			<tr>
 				<td>Author Name:</td>
 				<td><input type="text"  name="Authorname" value=""></td>
 			</tr>
